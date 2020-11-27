@@ -1,61 +1,63 @@
 
 ## usersテーブル
 
-| Column      | Type   | Options  |
-| ----------- | ------ | -------- |
-| nickname    | string | not null |
-| email       | string | not null |
-| password    | string | not null |
-| name        | text   | not null |
-| nameKANA    | text   | not null |
-| birthday    | date   | not null |
+| Column                 | Type   | Options     |
+| ---------------------- | ------ | ----------- |
+| nickname               | string | null: false |
+| email                  | string | null: false |
+| encrypted_password     | string | null: false |
+| first_name             | string | null: false |
+| last_name              | string | null: false |
+| first_name_kana        | string | null: false |
+| last_name_kana         | string | null: false |
+| birthday               | string | null: false |
 
 ### Association
 - has_many :items
-- has_many :purchase records
+- has_many :purchase_records
 
 ## itemsテーブル
 
-| Column      | Type   | Options  |
-| ----------- | ------ | -------- |
-| image       | string | not null |
-| product     | string | not null |
-| explanation | string | not null |
-| category    | string | not null |
-| status      | string | not null |
-| burden      | string | not null |
-| area        | string | not null |
-| day         | string | not null |
-| price       | string | not null |
-| user_id     | string | not null |
+| Column      | Type    | Options                       |
+| ----------- | ------- | ----------------------------- |
+| product     | string  | null: false                   |
+| explanation | string  | null: false                   |
+| category_id | integer | null: false                   |
+| status_id   | integer | null: false                   |
+| burden_id   | integer | null: false                   |
+| area_id     | integer | null: false                   |
+| day_id      | integer | null: false                   |
+| price       | string  | null: false                   |
+| user_id     | string  | null: false foreign_key: true |
 
 ### Association
-- belongs_to :users
-- has_one :purchase records
+- belongs_to :user
+- has_one :purchase_record
 
-## purchase recordsテーブル
+## purchase_recordsテーブル
 
-| Column      | Type   | Options  |
-| ----------- | ------ | -------- |
-| who         | string | not null |
-| when        | string | not null |
-| buy         | string | not null |
-| user_id     | string | not null |
-
-### Association
-- belongs_to :users
-- has_one :items
-
-## street addressテーブル
-
-| Column       | Type    | Options  |
-| ------------ | ------- | -------- |
-| postal code  | integer | not null |
-| prefectures  | string  | not null |
-| municipality | text    | not null |
-| address      | text    | not null |
-| building     | text    | not null |
-| phone number | integer | not null |
+| Column      | Type   | Options                       |
+| ----------- | ------ | ----------------------------- |
+| who         | string | null: false                   |
+| buy         | string | null: false                   |
+| user_id     | string | null: false foreign_key: true |
 
 ### Association
-- has_one :purchase records
+- belongs_to :user
+- has_one :item
+
+## street_addressテーブル
+
+| Column             | Type    | Options                       |
+| ------------------ | ------- | ----------------------------- |
+| postal_code        | string  | null: false                   |
+| prefectures_id     | integer | null: false                   |
+| municipality       | string  | null: false                   |
+| address            | string  | null: false                   |
+| building           | string  |                               |
+| phone_number       | string  | null: false                   |
+| phone_number       | string  | null: false                   |
+| purchase_record_id | string  | null: false foreign_key: true |
+
+### Association
+- has_one :purchase_record
