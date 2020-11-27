@@ -10,7 +10,7 @@
 | last_name              | string | null: false |
 | first_name_kana        | string | null: false |
 | last_name_kana         | string | null: false |
-| birthday               | string | null: false |
+| birthday               | date   | null: false |
 
 ### Association
 - has_many :items
@@ -21,13 +21,13 @@
 | Column      | Type    | Options                       |
 | ----------- | ------- | ----------------------------- |
 | product     | string  | null: false                   |
-| explanation | string  | null: false                   |
+| explanation | text    | null: false                   |
 | category_id | integer | null: false                   |
 | status_id   | integer | null: false                   |
 | burden_id   | integer | null: false                   |
 | area_id     | integer | null: false                   |
 | day_id      | integer | null: false                   |
-| price       | string  | null: false                   |
+| price       | integer | null: false                   |
 | user_id     | string  | null: false foreign_key: true |
 
 ### Association
@@ -36,15 +36,15 @@
 
 ## purchase_recordsテーブル
 
-| Column      | Type   | Options                       |
-| ----------- | ------ | ----------------------------- |
-| who         | string | null: false                   |
-| buy         | string | null: false                   |
-| user_id     | string | null: false foreign_key: true |
+| Column      | Type    | Options                       |
+| ----------- | ------- | ----------------------------- |
+| item_id     | string  | null: false foreign_key: true |
+| user_id     | integer | null: false foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_one :item
+- belongs_to :item
+- has_one :street_address
 
 ## street_addressテーブル
 
@@ -56,8 +56,7 @@
 | address            | string  | null: false                   |
 | building           | string  |                               |
 | phone_number       | string  | null: false                   |
-| phone_number       | string  | null: false                   |
 | purchase_record_id | string  | null: false foreign_key: true |
 
 ### Association
-- has_one :purchase_record
+- belongs_to :purchase_record
