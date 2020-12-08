@@ -7,10 +7,12 @@ class Item < ApplicationRecord
   belongs_to :burden
   belongs_to :day
 
-  validates :product, presence: true
-  validates :explanation, presence: true
-  validates :price, presence: true
-  validates :image, presence: true
+  with_options presence: true do
+    validates :product
+    validates :explanation
+    validates :price
+    validates :image
+  end
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
