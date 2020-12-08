@@ -9,19 +9,16 @@ class Item < ApplicationRecord
 
   validates :product, presence: true
   validates :explanation, presence: true
-  validates :category_id, presence: true
-  validates :status_id, presence: true
-  validates :burden_id, presence: true
-  validates :prefecture_id, presence: true
-  validates :day_id, presence: true
   validates :price, presence: true
   validates :image, presence: true
 
-  validates :prefecture_id, numericality: { other_than: 1 }
-  validates :category_id, numericality: { other_than: 1 }
-  validates :status_id, numericality: { other_than: 1 }
-  validates :burden_id, numericality: { other_than: 1 }
-  validates :day_id, numericality: { other_than: 1 }
+  with_options numericality: { other_than: 1 } do
+    validates :category_id, presence:
+    validates :status_id, presence:
+    validates :burden_id, presence:
+    validates :prefecture_id, presence:
+    validates :day_id, presence:
+  end
 
   validates :price, format: { with: /\A[0-9]+\z/}
 
