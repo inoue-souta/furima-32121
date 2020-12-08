@@ -23,50 +23,25 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Explanation can't be blank"
       end
-      it 'category_idが空では保存できない' do
-        @item.category_id = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include "Category can't be blank", "Category is not a number"
-      end
       it 'category_idが1では保存できない' do
         @item.category_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include "Category must be other than 1"
-      end
-      it 'status_idが空では保存できない' do
-        @item.status_id = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include "Status can't be blank", "Status is not a number"
       end
       it 'status_idが1では保存できない' do
         @item.status_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include "Status must be other than 1"
       end
-      it 'burden_idが空では保存できない' do
-        @item.burden_id = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include "Burden can't be blank", "Burden is not a number"
-      end
       it 'burden_idが1では保存できない' do
         @item.burden_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include "Burden must be other than 1"
       end
-      it 'prefecture_idが空では保存できない' do
-        @item.prefecture_id = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include "Prefecture can't be blank", "Prefecture is not a number"
-      end
       it 'prefecture_idが1では保存できない' do
         @item.prefecture_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include "Prefecture must be other than 1"
-      end
-      it 'day_idが空では保存できない' do
-        @item.day_id = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include "Day can't be blank", "Day is not a number"
       end
       it 'day_idが1では保存できない' do
         @item.day_id = "1"

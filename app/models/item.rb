@@ -13,11 +13,11 @@ class Item < ApplicationRecord
   validates :image, presence: true
 
   with_options numericality: { other_than: 1 } do
-    validates :category_id, presence:
-    validates :status_id, presence:
-    validates :burden_id, presence:
-    validates :prefecture_id, presence:
-    validates :day_id, presence:
+    validates :category_id
+    validates :status_id
+    validates :burden_id
+    validates :prefecture_id
+    validates :day_id
   end
 
   validates :price, format: { with: /\A[0-9]+\z/}
