@@ -1,7 +1,12 @@
 class PurchaseRecordsController < ApplicationController
+  before_action :move_to_index
+
   def index
     @item = Item.find(params[:item_id])
     @purchase = PurchaseAddress.new
+    if @item.purchase_record.present?||current_user.id == @item.user_id
+      redirect_to root_path
+    end
   end
 
   def create
@@ -29,6 +34,12 @@ class PurchaseRecordsController < ApplicationController
       card: purchase_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
   end
 
 end
